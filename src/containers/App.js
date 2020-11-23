@@ -3,15 +3,22 @@ import {connect} from 'react-redux';
 import {Page} from '../components/page';
 import {User} from '../components/user';
 import {getPhotos} from '../actions/PageActions';
+import {handleLogin} from '../actions/UserActions';
 import './App.css';
 
 class App extends Component {
   render () {
-    const {user, page, getPhotosAction} = this.props;
+    const {user, page, getPhotosAction, handleLoginAction} = this.props;
     return (
       <div className="App">
+        <User
+          name={user.name}
+          isFetching={user.isFetching}
+          error={user.error}
+          handleLogin={handleLoginAction}
+        />
         <header className="App-header">
-          <h1 className="App-title">Мой топ фото</h1>
+          <h1 className="App-title">Фотографии</h1>
         </header>
         <Page
           photos={page.photos}
@@ -19,7 +26,6 @@ class App extends Component {
           isFetching={page.isFetching}
           getPhotos={getPhotosAction}
         />
-        <User name={user.name} />
 
       </div>
     );
@@ -46,6 +52,7 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch => {
   return {
     getPhotosAction: year => dispatch (getPhotos (year)),
+    handleLoginAction: () => dispatch (handleLogin ()),
   };
 };
 
