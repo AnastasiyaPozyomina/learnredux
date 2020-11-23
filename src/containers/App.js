@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './App.css';
+import {Page} from '../components/page';
+import {User} from '../components/user';
 
 class App extends Component {
   render () {
@@ -10,12 +12,8 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Мой топ фото</h1>
         </header>
-        <p>
-    Привет, {user.name}!
-        </p>
-        <p>
-          У тебя {page.photos.length} фото за {page.year} год
-        </p>
+        <User name={user.name} />
+        <Page photos={page.photos} year={page.year} />
       </div>
     );
   }
@@ -27,13 +25,11 @@ const mapStateToProps = store => {
   return {
     user: store.user,
     page: store.page,
-//  В данной функции, мы хотим отрезать от нашего общего пирога (Store) только те кусочки (редьюсеры), которые нам нужны.
-//  Мы приклеиваем в props компонента, данные из тех редьюсеров, которые нам требуются.
-//  Мы не только получаем в this.props.XXX данные, которым нам нужны, но мы еще и подписываемся на изменение этих данных.
+    //  В данной функции, мы хотим отрезать от нашего общего пирога (Store) только те кусочки (редьюсеры), которые нам нужны.
+    //  Мы приклеиваем в props компонента, данные из тех редьюсеров, которые нам требуются.
+    //  Мы не только получаем в this.props.XXX данные, которым нам нужны, но мы еще и подписываемся на изменение этих данных.
   };
 };
-
-
 
 export default connect (mapStateToProps) (App);
 
