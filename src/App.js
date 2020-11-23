@@ -4,16 +4,18 @@ import './App.css';
 
 class App extends Component {
   render () {
-    const {name, surname, age} = this.props.user;
+    const {user, page} = this.props;
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Мой топ фото</h1>
         </header>
         <p>
-          Привет из App, {name} {surname}!
+    Привет, {user.name}!
         </p>
-        <p>Тебе уже {age} ?</p>
+        <p>
+          У тебя {page.photos.length} фото за {page.year} год
+        </p>
       </div>
     );
   }
@@ -24,8 +26,14 @@ const mapStateToProps = store => {
   console.log (store); // посмотрим, что же у нас в store?
   return {
     user: store.user,
+    page: store.page,
+//  В данной функции, мы хотим отрезать от нашего общего пирога (Store) только те кусочки (редьюсеры), которые нам нужны.
+//  Мы приклеиваем в props компонента, данные из тех редьюсеров, которые нам требуются.
+//  Мы не только получаем в this.props.XXX данные, которым нам нужны, но мы еще и подписываемся на изменение этих данных.
   };
 };
+
+
 
 export default connect (mapStateToProps) (App);
 
