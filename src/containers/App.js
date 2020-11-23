@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {Page} from '../components/page';
-import {User} from '../components/user';
-import {setYear} from '../actions/PageActions';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Page } from '../components/page';
+import { User } from '../components/user';
+import { setYear } from '../actions/PageActions';
 
 import './App.css';
 
