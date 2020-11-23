@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 export class Page extends React.Component {
   onBtnClick = e => {
     const year = +e.currentTarget.innerText;
-    this.props.setYear (year);
+    this.props.getPhotos (year);
   };
   render () {
-    const {year, photos} = this.props;
+    const {year, photos, isFetching} = this.props;
     return (
       <div>
         <div>
@@ -23,9 +23,9 @@ export class Page extends React.Component {
           <button onClick={this.onBtnClick}>2011</button>
           <button onClick={this.onBtnClick}>2010</button>
         </div>
-        <p>
-          У тебя {photos.length} фото за {year} год
-        </p>
+        
+        <h3>{year} год</h3>
+        {isFetching ? <p>Загрузка...</p> : <p>У тебя {photos.length} фото.</p>}
       </div>
     );
   }
@@ -34,5 +34,7 @@ export class Page extends React.Component {
 Page.propTypes = {
   year: PropTypes.number.isRequired,
   photos: PropTypes.array.isRequired,
-  setYear: PropTypes.func.isRequired,
+  getPhotos: PropTypes.func.isRequired,
+  // добавили новое свойство - isFetching, причем в propTypes нет boolean, есть bool
+  isFetching: PropTypes.bool.isRequired,
 };
