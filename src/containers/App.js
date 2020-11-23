@@ -1,19 +1,21 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import './App.css';
 import {Page} from '../components/page';
 import {User} from '../components/user';
+import {setYear} from '../actions/PageActions';
+
+import './App.css';
 
 class App extends Component {
   render () {
-    const {user, page} = this.props;
+    const {user, page, setYearAction} = this.props;
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Мой топ фото</h1>
         </header>
         <User name={user.name} />
-        <Page photos={page.photos} year={page.year} />
+        <Page photos={page.photos} year={page.year} setYear={setYearAction} />
       </div>
     );
   }
@@ -31,7 +33,18 @@ const mapStateToProps = store => {
   };
 };
 
-export default connect (mapStateToProps) (App);
+// mapDispatchToPropsт-  функция, первым аргументом получает dispatch, а значит  можем теперь "диспатчить" экшены,
+// которые будут пойманы редьюсером. Только те экшены, которые были отправлены с помощью "диспетчера" будут пойманы редьюсером.
+// Затем внутри mapDispatchToProps вернули объект, который в итоге приклеится в this.props (так же, как и было в mapStateToProps).
+// В "приклееном объекте" создаем функцию setYearAction [1], суть которой сводится к следующему: "диспатчни" импортированный выше setYear с переданным годом.
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setYearAction: year => dispatch (setYear (year)),
+  };
+};
+
+export default connect (mapStateToProps, mapDispatchToProps) (App);
 
 //connect помогает нам получить в качестве props для компонента <App /> данные из store
 // Назначение функции connect вытекает из названия: подключи React компонент к Redux store.
