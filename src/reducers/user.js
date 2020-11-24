@@ -6,10 +6,9 @@ import {
 
 const initialState = {
   name: '',
-  error: '', // добавили для сохранения текста ошибки
-  isFetching: false, // добавили для реакции на статус "загружаю" или нет
-};
-
+  error: '',
+  isFetching: false,
+}
 
 export function userReducer(state = initialState, action) {
   switch (action.type) {

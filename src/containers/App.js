@@ -10,23 +10,31 @@ class App extends Component {
   render () {
     const {user, page, getPhotosAction, handleLoginAction} = this.props;
     return (
-      <div className="App">
-        <User
-          name={user.name}
-          isFetching={user.isFetching}
-          error={user.error}
-          handleLogin={handleLoginAction}
-        />
-        <header className="App-header">
-          <h1 className="App-title">Фотографии</h1>
-        </header>
-        <Page
-          photos={page.photos}
-          year={page.year}
-          isFetching={page.isFetching}
-          getPhotos={getPhotosAction}
-        />
+      <div className="App container">
+        <div className="row">
 
+          <User
+            name={user.name}
+            isFetching={user.isFetching}
+            error={user.error}
+            handleLogin={handleLoginAction}
+          />
+        </div>
+        <div className="row">
+          <div className="col">
+            <header className="App-header">
+              <h1 className="App-title">Фотографии VK</h1>
+            </header>
+
+            <Page
+              photos={page.photos}
+              year={page.year}
+              isFetching={page.isFetching}
+              getPhotos={getPhotosAction}
+            />
+
+          </div>
+        </div>
       </div>
     );
   }

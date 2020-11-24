@@ -17,11 +17,15 @@ export class Page extends React.Component {
       return <p>Загрузка...</p>;
     } else {
       return photos.map (entry => (
-        <div key={entry.id} className="photo">
-          <li>
+        <div key={entry.id} className="photo card">
+          <p className="img">
             <img src={entry.sizes[0].url} alt="" />
-          </li>
-          <p>{entry.likes.count} ❤</p>
+          </p>
+          <div class="card-body">
+            <p class="card-text">
+              {entry.likes.count} ❤
+            </p>
+          </div>
         </div>
       ));
     }
@@ -32,46 +36,59 @@ export class Page extends React.Component {
     return (
       <div className="ib page">
         <p>
-          <button className="btn" onClick={this.onBtnClick}>
+          <button
+            type="button"
+            className="btn btn-success"
+            onClick={this.onBtnClick}
+          >
             2020
-          </button>{' '}
-          <button className="btn" onClick={this.onBtnClick}>
+          </button>
+          <button
+            type="button"
+            className="btn btn-success"
+            onClick={this.onBtnClick}
+          >
             2019
-          </button>{' '}
-          <button className="btn" onClick={this.onBtnClick}>
+          </button>
+          <button
+            type="button"
+            className="btn btn-success"
+            onClick={this.onBtnClick}
+          >
             2018
-          </button>{' '}
-          <button className="btn" onClick={this.onBtnClick}>
+          </button>
+          <button className="btn btn-success" onClick={this.onBtnClick}>
             2017
-          </button>{' '}
-          <button className="btn" onClick={this.onBtnClick}>
+          </button>
+          <button className="btn btn-success" onClick={this.onBtnClick}>
             2016
-          </button>{' '}
-          <button className="btn" onClick={this.onBtnClick}>
+          </button>
+          <button className="btn btn-success" onClick={this.onBtnClick}>
             2015
-          </button>{' '}
-          <button className="btn" onClick={this.onBtnClick}>
+          </button>
+          <button className="btn btn-success" onClick={this.onBtnClick}>
             2014
-          </button> {' '}
-          <button className="btn" onClick={this.onBtnClick}>
+          </button>
+          <button className="btn btn-success" onClick={this.onBtnClick}>
             2013
-          </button> {' '}
-          <button className="btn" onClick={this.onBtnClick}>
+          </button>
+          <button className="btn btn-success" onClick={this.onBtnClick}>
             2012
-          </button> {' '}
-          <button className="btn" onClick={this.onBtnClick}>
+          </button>
+          <button className="btn btn-success" onClick={this.onBtnClick}>
             2011
-          </button> {' '}
-          <button className="btn" onClick={this.onBtnClick}>
+          </button>
+          <button className="btn btn-success" onClick={this.onBtnClick}>
             2010
-          </button> {' '}
+          </button>
         </p>
         <h3>
-          {year} год [{photos.length}]
+          {year} год{' '}
         </h3>
-        <ul className="photoes">
+        <p>Количество фотографии: {photos.length}</p>
+        <div className="photo-container">
           {this.renderTemplate ()}
-        </ul>
+        </div>
 
       </div>
     );

@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 export class User extends React.Component {
   renderTemplate = () => {
@@ -23,7 +23,7 @@ export class User extends React.Component {
       )
     }
   }
-  render () {
+  render() {
     return <div className="ib user">{this.renderTemplate()}</div>
   }
 }
@@ -33,4 +33,4 @@ User.propTypes = {
   error: PropTypes.string,
   isFetching: PropTypes.bool.isRequired,
   handleLogin: PropTypes.func.isRequired,
-};
+}
